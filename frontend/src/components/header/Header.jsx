@@ -1,48 +1,62 @@
 import "./Header.css";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+import { ThemeSwitch } from "../buttons";
+import { IoIosMenu, IoIosClose } from "react-icons/io";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 const Header = () => {
+  const { user, logout } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { logout } = useAuth();
-  const user = localStorage.getItem("user");
-  const [dark, setDark] = useState(
-    localStorage.getItem("theme") === "dark" || false
-  );
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-    localStorage.setItem("theme", dark ? "dark" : "light");
-  }, [dark]);
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate('/login')
+  };
+
+  const msg = `Logged in as "${
+    user && user.name.charAt(0).toUpperCase() + user.name.slice(1)
+  }"`;
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <div>
-      <h1>MERN ToDo App</h1>
+    <div className="header-container ">
+      <div className="h-left-div">
+        <Link to="/">
+        <h1 className="text-xl font-bold">MERN ToDo App</h1>
+        </Link>
+      </div>
 
-      <button
-        onClick={() => setDark(!dark)}
-        className="bg-gray-300 text-black px-3 py-1 rounded hover:bg-gray-400 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 ml-4"
-      >
-        {dark? 'Light': "Dark"} Mode
-      </button>
+      <div className="h-right-div">
+        <ThemeSwitch />
+        {user && (
+          <>
+            <span className="flex items-center">{msg}</span>
+            <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        )}
+      </div>
 
-      {user && (
-        <>
-          <h4>Logged in as {user.name}</h4>
-          <button
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </>
-      )}
+      <div className="menu" onClick={toggleMenu}>
+        <button className={`menu-icon ${menuOpen ? 'open': 'close'}`}>{menuOpen ? <IoIosClose /> : <IoIosMenu />}</button>
+        <div
+          className="menu-options"
+          style={{ display: menuOpen ? "block" : "none" }}
+        >
+          <ul>
+            <li>PRofile</li>
+            <li>Dark</li>
+            <li>Logout</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

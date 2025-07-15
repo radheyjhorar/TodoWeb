@@ -12,10 +12,10 @@ exports.protect = async (req, res, next) => {
       req.user = await User.findById(decoded.id).select('-password');
       next();
     } catch (error) {
-      res.status(403).json({ message: 'Not authorized, token failed' });
+      res.status(401).json({ message: 'Not authorized, Token expired or invalid.' });
     }
   }
   if(!token) {
-    res.status(401).json({ message: 'Not authorized, no token' });
+    res.status(401).json({ message: 'Not authorized, No token provided' });
   }
 };

@@ -1,0 +1,31 @@
+.layout-container {
+  min-height: 100vh;
+}
+
+main {
+  padding: 1rem 2rem;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  justify-content: center;
+}
+
+.contenet-container {
+  max-width: 30rem;
+  width: -webkit-fill-available;
+}
+
+footer {
+  height: 30px;
+}
+
+@media (max-width: 520px) {
+  main {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 470px) {
+  main {
+    padding: 1rem 1rem;
+  }
+}

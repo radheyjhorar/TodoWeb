@@ -1,0 +1,94 @@
+.todo-item-container {
+  width: 100%;
+}
+
+.todo-item-container li {
+  display: flex;
+  margin-bottom: 10px;
+  background-color: var(--card-color);
+  color: var(--font-color);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+}
+
+html[data-theme="light"] .todo-item-container li:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="dark"] .todo-item-container li:hover {
+  box-shadow:
+    0 2px 4px rgba(255, 255, 255, 0.04),
+    0 6px 12px rgba(255, 255, 255, 0.03);
+}
+
+.todo-item-container li span {
+  flex-grow: 1;
+  font-size: 1rem;
+}
+
+.todo-item-container li div button {
+  height: fit-content;
+  padding: 0.2rem;
+}
+
+.todo-item-container li div button.done-btn svg path:last-child {
+  stroke-width: 2;
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  transition: all 0.5s ease;
+}
+
+.todo-item-container li div button.done-btn:hover svg path:last-child {
+  fill: none;
+  stroke-dashoffset: 0;
+}
+
+.todo-item-container li div button.undo-btn {
+  background-color: var(--secondary-color);
+  opacity: 0.8;
+  /* cursor: not-allowed; */
+}
+
+.todo-item-container li div button.undo-btn svg {
+  transition: var(--transition);
+}
+
+.todo-item-container li div button.undo-btn:hover svg {
+  rotate: calc(-50deg);
+  scale: 0.9;
+}
+
+.todo-item-container li div button.undo-btn:hover {
+  background-color: var(--secondary-hover);
+}
+
+.todo-item-container li div button.delete-btn {
+  background-color: var(--delete-color);
+}
+
+.todo-item-container li div button.delete-btn:hover {
+  background-color: var(--delete-hover-color);
+}
+
+.todo-item-container li div button.delete-btn:hover svg {
+  animation: vibrate 0.6s infinite;
+  scale: 1.2;
+}
+
+
+
+@media (max-width: 520px) {
+  .todo-item-container li {
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+@media (max-width: 470px) {
+  .todo-item-container li {
+    padding: 0.4rem 0.5rem;
+  }
+}

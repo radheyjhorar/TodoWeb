@@ -1,0 +1,56 @@
+
+.login-form, .register-form {
+  display: flex;
+  flex-flow: column;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.login-form span, .register-form span {
+  position: absolute;
+    right: 10px;
+    top: 35%;
+    cursor: pointer;
+}
+
+.register-form span {
+  top: 50%;
+}
+
+.login-form input, .register-form input {
+  width: 100%;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border-color);  
+  border-radius: 0.3rem;      
+  color: var(--font-color);                
+  background-color: var(--bg-color);       
+  transition: background-color 0s ease;
+  transition: border-color, outline, box-shadow 0.15s ease;
+}
+
+.login-form input:hover, .register-form input:hover {
+  border-color: var(--border-hover);
+}
+
+.login-form input:focus, .register-form input:focus {
+  border-color: var(--primary-color);            
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.login-form button, .register-form button{
+  width: 100%;
+}
+
+.login-form a, .register-form a {
+  margin-left: auto;
+  margin-right: 2px;
+  text-decoration: underline;
+  transition: var(--transition);
+  color: var(--font-color);
+  font-size: 15px;
+}
+
+.login-form a:hover, .register-form a:hover {
+  color: var(--primary-color);
+}

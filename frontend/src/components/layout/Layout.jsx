@@ -1,24 +1,27 @@
-import Header from "../header/Header"
-import Footer from "../footer/Footer"
-import { Outlet } from 'react-router-dom';
+import "./Layout.css";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import { Outlet } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Layout = () => {
-
-  const viewHeight = window.innerHeight;
+  const { loading } = useAuth();
 
   return (
     <div className="layout-container">
       <header>
         <Header />
       </header>
-      <main className="content-container p-4 bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen">
-        <Outlet />
+      <main>
+        <div className="contenet-container">
+          {loading ? "Loading...": <Outlet />}
+        </div>
       </main>
-      <footer style={viewHeight > 100 && { position: "relative" }}>
+      <footer>
         <Footer />
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

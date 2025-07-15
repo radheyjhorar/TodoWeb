@@ -1,19 +1,78 @@
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:opsz,wght@14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:wght@500&display=swap');
 
-/* Import Tailwindd CSS */
-@import "tailwindcss";
+:root {
+  --accent-color: #10B981;
+  --accent-hover-color: #059669;
+  --delete-color: #EF4444;
+  --delete-hover-color: #DC2626;
+  --transition: All 0.15s ease;
+}
+
+[data-theme="light"] {
+  --primary-color: #3B82F6;
+  --primary-hover: #2563EB;
+  --secondary-color: #3900ff;
+  --secondary-hover: #2900bc;
+  --font-color: #1F2937;
+  --bg-color: #FAFAF9;
+  --heading-color: #0F172A;
+  --card-color: #F3F4F6;
+  --border-color: #E5E7EB;
+  --border-hover: #93C5FD;
+  --muted-color: #6B7280;
+
+}
+
+[data-theme="dark"] {
+  --primary-color: #60A5FA;
+  --primary-hover: #3B82F6;
+  --secondary-color: #3900ff;
+  --secondary-hover: #2900bc;
+  --font-color: #F3F4F6;
+  --bg-color: #111827;
+  --heading-color: #E5E7EB;
+  --card-color: #1F2937;
+  --border-color: #374151;
+  --border-hover: #3d5571;
+  --muted-color: #9CA3AF;
+}
 
 body {
   font-family: Arial, sans-serif;
-  padding: 2rem;
-  background: #f9f9f9;
 }
 
-input {
-  padding: 0.5rem;
-  margin-right: 0.5rem;
-}
 button {
-  margin-left: 0.5rem;
+  padding: 0.4rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+@keyframes vibrate {
+  0% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+
+@media (max-width: 520px) {
+  button {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 470px) {
+  button {
+    padding: 0.2rem 0.5rem;
+  }
 }

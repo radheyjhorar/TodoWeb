@@ -1,15 +1,17 @@
-import axios from 'axios';
+import axios from '../utils/axiosInstance';
+import plainAxios from '../utils/plainAxios';
 // const API_URL = process.env.API_URL + 'users';
 const API_URL = 'http://localhost:1212/api/users';
 // console.log(API_URL);
 
 const register = async (name, email, password) => {
-  const res = await axios.post(`${API_URL}/register`, {name, email, password });
+  const res = await axios.post(`/users/register`, {name, email, password });
+  // console.log(res.data.message)
   return res.data;
 }
 
 const login = async (email, password) => {
-  const res = await axios.post(`${API_URL}/login`, { email, password });
+  const res = await plainAxios.post(`/users/login`, { email, password });
   return res.data;
 };
 

@@ -1,36 +1,80 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  const login = (userData, token) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-    localStorage.setItem('token', token);
-    setUser(userData);
+  const login = (data) => {
+    localStorage.setItem("user", JSON.stringify(data.user));
+    // console.log("Data: ", data.user);
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+    setUser(data.user);
+    scheduleAutoLogout(data.accessToken);
   };
 
   const logout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    localStorage.removeItem("user");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     setUser(null);
+    navigate("/login");
   };
 
-   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    const storedToken = localStorage.getItem('token');
-    if(storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
-      // setUser(storedUser);
+  const isTokenValid = () => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) return false;
+
+    try {
+      const { exp } = jwtDecode(token);
+      return exp > Date.now() / 1000;
+    } catch {
+      return false;
     }
+  };
+
+  const scheduleAutoLogout = (token) => {
+    try {
+      const { exp } = jwtDecode(token);
+      const expiresIn = exp * 1000 - Date.now();
+      if (expiresIn > 0) {
+        setTimeout(() => {
+          logout();
+        }, expiresIn);
+      } else {
+        logout();
+      }
+    } catch {
+      logout();
+    }
+  };
+
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      const storedUser = localStorage.getItem("user");
+      const storedToken = localStorage.getItem("accessToken");
+
+      if (storedUser && storedToken) {
+        if (isTokenValid()) {
+          setUser(JSON.parse(storedUser));
+          scheduleAutoLogout(storedToken);
+        } else {
+          logout();
+        }
+      }
+      setLoading(false);
+    };
+    checkAuthStatus();
   }, []);
 
-  // const user1 = user && JSON.stringify(user);
-
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
+    <AuthContext.Provider value={{ user, loading, login, logout }}>
+      {loading ? "Loading..." : children}
     </AuthContext.Provider>
   );
 };

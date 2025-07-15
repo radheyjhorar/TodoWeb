@@ -1,8 +1,12 @@
+
 module.exports = {
-  darkMode: 'class',
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ['./src/**/*.{js,jsx}'],
   theme: {
-    extends: {},
+    extend: {
+      screens: {
+        "xs": "470px"
+      }
+    },
   },
   plugins: [],
-}
+};

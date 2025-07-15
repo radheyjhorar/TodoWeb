@@ -1,0 +1,10 @@
+
+.footer-container {
+  background: var(--bg-color);
+  color: var(--font-color);
+  height: inherit;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}

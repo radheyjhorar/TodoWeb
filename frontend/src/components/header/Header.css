@@ -1,0 +1,117 @@
+.header-container {
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background: var(--bg-color);
+  color: var(--font-color);
+}
+
+
+.header-container .h-right-div {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+}
+
+.header-container .h-right-div label {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+
+.header-container .h-right-div label svg {
+  width: inherit;
+  height: inherit;
+}
+
+.header-container .menu {
+  position: relative;
+  display: none;
+}
+
+.header-container .menu .menu-options {
+  position: absolute;
+  top: 34px;
+  right: 8px;
+  background: var(--bg-color);
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.header-container .menu .menu-options ul li {
+  padding: 0.2rem 1.5rem;
+  /* margin: 0.1rem 0; */
+  cursor: pointer;
+
+}
+
+.header-container .menu .menu-options ul li:hover {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+.header-container .menu .menu-icon {
+  cursor: pointer;
+  padding: 2px;
+}
+
+.header-container .menu .menu-icon.open {
+  transition: all 0.5s ease;
+  transform: rotate(90deg);
+}
+
+.header-container .menu .menu-icon.open svg {
+  transition: all 0.5s ease;
+  transform: scale(1.1);
+}
+
+.header-container .menu .menu-icon.close {
+  transition: all 0.5s ease;
+}
+
+.header-container .menu .menu-icon.close svg {
+  transition: all 0.5s ease;
+  transform: scale(1);
+}
+
+.header-container .menu .menu-icon svg {
+  font-size: 25px;
+}
+
+@media (max-width: 520px) {
+
+  .header-container {
+    padding: 0 1rem;
+    height: 50px;
+  }
+
+  .header-container .h-left-div h1 {
+    font-size: 18px;
+  }
+
+  .header-container .h-right-div {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 470px) {
+  .header-container {
+    padding: 0 0.5rem;
+    height: 40px;
+  }
+
+  .header-container .h-left-div h1 {
+    font-size: 14px;
+  }
+
+  .header-container .menu {
+    display: block;
+  }
+
+  .header-container .h-right-div {
+    display: none;
+  }
+}

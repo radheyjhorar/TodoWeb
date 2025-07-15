@@ -1,14 +1,31 @@
+import "./TodoItem.css";
 import { MdOutlineDone, MdDelete } from "react-icons/md";
-import { RxCross2 } from "react-icons/rx";
+import { FaUndo } from 'react-icons/fa';
 
-const TodoItem = ({todo, onDelete, onToggle}) => {
+const TodoItem = ({ todos, handleDelete, handleToggle }) => {
   return (
-    <li style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-      {todo.title}
-      <button onClick={() => onToggle(todo)}>{ !todo.completed ? <MdOutlineDone />: <RxCross2 /> }</button>
-      <button onClick={() => onDelete(todo._id)}><MdDelete /></button>
-    </li>
-  )
-}
+    <ul className="todo-item-container">
+        {todos && todos.map(({ _id, title, completed }, index) => (
+            <li key={_id} style={completed ? {backgroundColor: "var(--primary-color)", color: "white"}: {}}>
+              <span>{index+1}. {title}</span>
+              <div className="flex ml-auto space-x-1">
+                <button
+                  onClick={() => handleToggle(_id, completed)}
+                  className={completed ? "undo-btn" : "done-btn"}
+                >
+                  {completed ? <FaUndo />  : <MdOutlineDone/>}
+                </button>
+                <button
+                  onClick={() => handleDelete(_id)}
+                  className="delete-btn"
+                >
+                  <MdDelete />
+                </button>
+              </div>
+            </li>
+          ))}
+      </ul>
+  );
+};
 
-export default TodoItem
+export default TodoItem;
