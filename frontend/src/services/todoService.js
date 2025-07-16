@@ -1,5 +1,5 @@
-import axios from "axios";
-const API_URL = 'http://localhost:1212/api/todos';
+import axios from "../utils/plainAxios";
+const API_URL = '/todos';
 
 const getAuthHeaders = (token) => ({
   headers: { Authorization: `Bearer ${token}` }

@@ -1,8 +1,5 @@
 import axios from '../utils/axiosInstance';
 import plainAxios from '../utils/plainAxios';
-// const API_URL = process.env.API_URL + 'users';
-const API_URL = 'http://localhost:1212/api/users';
-// console.log(API_URL);
 
 const register = async (name, email, password) => {
   const res = await axios.post(`/users/register`, {name, email, password });
