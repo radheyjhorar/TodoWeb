@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "create api for todo app with help off nodejs/express",
+  "description": "create api for todo app with help of nodejs/express",
   "license": "ISC",
   "author": "Radhey Jhorar",
   "type": "commonjs",
