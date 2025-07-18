@@ -12,7 +12,9 @@ dotenv.config();
 const app = express();
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://todowebfrontend.onrender.com'
+}));
 app.use(express.json());
 
 // app.get("/", (req, res) => {
