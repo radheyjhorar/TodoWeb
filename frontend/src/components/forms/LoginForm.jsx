@@ -29,8 +29,8 @@ const LoginForm = () => {
     } catch (error) {
       if (error.response && error.response.data?.message) {
         setErrorMessage(error.response.data.message);
-        // console.log(error.response.data.message);
       } else if (error.request) {
+        // console.log("Error: ",error.request);
         setErrorMessage("Network error: No response received from server.");
       } else {
         setErrorMessage("An unexpected error occurred. Please try again.");

@@ -30,15 +30,9 @@ const RegisterForm = () => {
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.message);
       } else if (error.request) {
-        setErrorMessage(
-          "Network error: No response received from server.",
-          error.response.data.message
-        );
+        setErrorMessage("Network error: No response received from server.");
       } else {
-        setErrorMessage(
-          "An unexpected error occurred. Please try again.",
-          error.response.data.message
-        );
+        setErrorMessage("An unexpected error occurred. Please try again.");
       }
     }
   };
