@@ -13,13 +13,13 @@ const app = express();
 connectDB();
 
 app.use(cors({
-  origin: 'https://todowebfrontend.netlify.app/'
+  origin: 'https://todowebfrontend.netlify.app'
 }));
 app.use(express.json());
 
-app.get("/apitest", (req, res) => {
-  res.send("API is running...");
-});
+// app.get("/apitest", (req, res) => {
+//   res.send("API is running...");
+// });
 
 app.use('/api/users', userRoutes);
 app.use('/api/todos', protect, todoRoutes);
