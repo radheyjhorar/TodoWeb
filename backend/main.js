@@ -13,7 +13,8 @@ const app = express();
 connectDB();
 
 app.use(cors({
-  origin: 'https://todowebfrontend.netlify.app'
+  origin: 'https://todowebfrontend.netlify.app',
+  credentials: true
 }));
 app.use(express.json());
 
