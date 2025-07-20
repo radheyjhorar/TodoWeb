@@ -56,10 +56,11 @@ exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    const accessToken = generateAccessToken(user._id);
-    const refreshToken = generateRefreshToken(user._id);
-    refreshTokens.push(refreshToken);
+
     if (user && (await user.matchPassword(password))) {
+      const accessToken = generateAccessToken(user._id);
+      const refreshToken = generateRefreshToken(user._id);
+      refreshTokens.push(refreshToken);
       res.json({
         user: {
           _id: user._id,
